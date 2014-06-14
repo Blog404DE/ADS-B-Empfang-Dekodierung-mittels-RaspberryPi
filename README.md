@@ -196,91 +196,26 @@ In the first case, please either detach or blacklist the kernel module
 	
 ### Schritt 5: Zuletzt das Init-Script für automatischen Start einrichten
 
-- Zuerst das Init-Script anlegen. Hierzu bitte folgende Datei anlegen:
+- Das mitgelieferte das Init-Script in den init.d Ordner kopieren
+	```
+	cp dump1090.sh /etc/init.d
+	```
+
+-  Das Init-Script öffnen um die Startparameter anzupassen:
 
 	```
 	sudo nano /etc/init.d/dump1090.sh
 	```
 	
-- Folgender Inhalt in das angelegte das Start-Script einfügen:
+- Die Zeile mit *PROG_ARGS="..."* suchen und durch folgende Zeile ersetzen:
 	
 	```
-	/bin/bash
-	### BEGIN INIT INFO
-	#
-	# Provides:		dump1090
-	# Required-Start:	$remote_fs
-	# Required-Stop:	$remote_fs
-	# Default-Start:	2 3 4 5
-	# Default-Stop:		0 1 6
-	# Short-Description:	dump1090 initscript
-	
-	#
-	### END INIT INFO
-	## Fill in name of program here.
-	PROG="dump1090"
-	PROG_PATH="/home/pi/dump1090"
 	PROG_ARGS="--quiet --net --net-ro-size 500 --net-ro-rate 5 --aggressive --enable-agc"
-	PIDFILE="/var/run/dump1090.pid"
-
-	start() {
-	      if [ -e $PIDFILE ]; then
-	          ## Program is running, exit with error.
-	          echo "Error! $PROG is currently running!" 1>&2
-	          exit 1
-	      else
-	          ## Change from /dev/null to something like /var/log/$PROG 
-	          ## if you want to save output.
-	          cd $PROG_PATH
-	          ./$PROG $PROG_ARGS 2>&1 >/dev/null &
-	          echo "$PROG started"
-	          touch $PIDFILE
-	      fi
-	}
-
-	stop() {
-	      if [ -e $PIDFILE ]; then
-	          ## Program is running, so stop it
-	         echo "$PROG is running"
-	         killall $PROG
-	         rm -f $PIDFILE
-	         echo "$PROG stopped"
-	      else
-	          ## Program is not running, exit with error.
-	          echo "Error! $PROG not started!" 1>&2
-	          exit 1
-	      fi
-	}
-
-	## Check to see if we are running as root first.
-	## Found at http://www.cyberciti.biz/tips/shell-root-user-check-script.html
-	if [ "$(id -u)" != "0" ]; then
-	      echo "This script must be run as root" 1>&2
-	      exit 1
-	fi
-	
-	case "$1" in
-	      start)
-	          start
-	          exit 0
-	      ;;
-	      stop)
-	          stop
-	          exit 0
-	      ;;
-	      reload|restart|force-reload)
-	          stop
-	          start
-	          exit 0
-	      ;;
-	      **)
-	          echo "Usage: $0 {start|stop|reload}" 1>&2
-	          exit 1
-	      ;;
-	esac
 	```	
 
-	Das Start-Script ist dabei bis auf wenige Punkte identisch mit dem im dump1090-Paket beigelegten _dump1090.sh_ Script. Einzig die Parameter wurden angepasst für Auto-Gain und dem optionalen Aggressive-Mode (siehe Hinweise).
+	Die gewählten Parameter wurden erweitert um Auto-Gain und dem optionalen Aggressive-Mode (siehe Hinweise).
+	
+- Kontrollieren Sie auch, ob der unter *PROG_PATH* gewählte Pfad korrekt ist (sollte */home/pi/dump1090* sein).
 
 -	Das Start-Script nun noch ausführbar machen und die Runlevel-Links erzeugen
 	```
@@ -290,11 +225,9 @@ In the first case, please either detach or blacklist the kernel module
 
 ### Abschluss:
 
-Welche Möglichkeiten habe ich nach dieser Installation? Ohne die Installation weiterer Anwendungen können Sie sich auf einer Google Maps bzw. OpenStreetMap-Karte die empfangenen Flugdaten anzeigen lassen. Hierzu rufen Sie im Browser die URL _http://ip_vom_raspberry:8080/_ auf. 
+Welche Möglichkeiten habe ich nach dieser Installation? Ohne die Installation weiterer Anwendungen können Sie sich im Browser auf einer Google Maps bzw. OpenStreetMap-Karte die empfangenen Flugdaten [anzeigen lassen] [6]. Hierzu rufen Sie im Browser die URL _http://ip_vom_raspberry:8080/_ auf. 
 
-##### Screenshot:
-
-![Screenshot](browserscreenshot.png)
+[6]: "https://bytebucket.org/jens_dutzi/ads-b-empfang-dekodierung-mittels-raspberrypi/raw/57beef87dc4a176d656641d21591fd53da242a6b/browserscreenshot.png" "Screenshot"
 
 Selbstverständlich besteht auch die Möglichkeit die Flugdaten mittels alternative Programme wie [Virtual Radar] [4] (für Windows/Linux) auszuwerten. Hierzu wird z.B. der von dump1090 bereitgestellte _Beast Raw Feed_ über den Port 30002 verwendet. Die Möglichkeiten sind hierbei beinahe unendlich.
 
