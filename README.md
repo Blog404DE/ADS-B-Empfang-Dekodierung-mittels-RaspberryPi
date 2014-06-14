@@ -288,6 +288,18 @@ In the first case, please either detach or blacklist the kernel module
 	sudo update-rc.d dump1090.sh defaults
 	```
 
+### Abschluss:
+
+Welche Möglichkeiten habe ich nach dieser Installation? Ohne die Installation weiterer Anwendungen können Sie sich auf einer Google Maps bzw. OpenStreetMap-Karte die empfangenen Flugdaten anzeigen lassen. Hierzu rufen Sie im Browser die URL _http://ip_vom_raspberry:8080/_ auf. 
+
+##### Screenshot:
+
+![Screenshot](browserscreenshot.png)
+
+Selbstverständlich besteht auch die Möglichkeit die Flugdaten mittels alternative Programme wie [Virtual Radar] [4] (für Windows/Linux) auszuwerten. Hierzu wird z.B. der von dump1090 bereitgestellte _Beast Raw Feed_ über den Port 30002 verwendet. Die Möglichkeiten sind hierbei beinahe unendlich.
+
+[4]: "http://www.virtualradarserver.co.uk" "VirtualRadar"
+
 ---
 
 ### Noch ein paar Hinweise
@@ -310,12 +322,12 @@ In the first case, please either detach or blacklist the kernel module
 	
 --
 
-Copyright Jens Dutzi 2014 / Stand: 14.06.2014
+###### Lizenz-Information:
 
-##### Lizenz-Information:
+Copyright Jens Dutzi 2014 / Stand: 14.06.2014
 
 ![Lizenz](http://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png).
 
-Dieses Werk ist lizenziert unter einer [Creative Commons Namensnennung - Nicht-kommerziell - Weitergabe unter gleichen Bedingungen 4.0 International Lizenz.] [4]
+Dieses Werk ist lizenziert unter einer [Creative Commons Namensnennung - Nicht-kommerziell - Weitergabe unter gleichen Bedingungen 4.0 International Lizenz.] [5]
 
-[4]: "http://creativecommons.org/licenses/by-nc-sa/4.0/" "Lizenzinformationen"
+[5]: "http://creativecommons.org/licenses/by-nc-sa/4.0/" "Lizenzinformationen"
