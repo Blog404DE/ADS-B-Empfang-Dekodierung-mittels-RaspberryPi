@@ -21,7 +21,7 @@ Die Anleitung erklärt, wie man auf einem RaspberryPi mittels eines bestimmten U
 #### Teil 1: Auf Ihrem Computer 
 
 ##### Windows/Mac:
-- SDCardFormatter ([Windows] [1]/[Mac] [2]) und [NOOBS Distribution] [3] herunterladen
+- SDCardFormatter (für [Windows] [1] bzw. [Mac] [2]) und [NOOBS Distribution] [3] herunterladen
 - SDCard mit SDCardFormatter formatieren. ``` Wichtig: Die Option „Format Size Adjustment“ aktivieren. ``` 
 - NOOBS Distribution entpacken und auf SDCard kopieren
 
