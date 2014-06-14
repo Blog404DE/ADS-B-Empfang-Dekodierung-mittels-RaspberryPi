@@ -25,7 +25,7 @@ Die Anleitung erklärt, wie man auf einem RaspberryPi mittels eines bestimmten U
 - SDCard mit SDCardFormatter formatieren. ``` Wichtig: Die Option „Format Size Adjustment“ aktivieren. ``` 
 - NOOBS Distribution entpacken und auf SDCard kopieren
 
-[1]: "https://www.sdcard.org/downloads/formatter_4/eula_windows/"	"Windows”
+[1]: "https://www.sdcard.org/downloads/formatter_4/eula_windows/" "Windows"
 [2]: "https://www.sdcard.org/downloads/formatter_4/eula_mac/" "Mac"
 [3]: "http://www.raspberrypi.org/downloads/" "nOOBs Distribution"
 
@@ -183,16 +183,7 @@ In the first case, please either detach or blacklist the kernel module
 
 	Es sollte dabei eine Ausgabe wie die folgende nach einigen Sekunden zu sehen sein:
 	
-	```
-	Hex     Mode  Sqwk  Flight   Alt    Spd  Hdg    Lat      Long   Sig  Msgs   Ti|
-	-------------------------------------------------------------------------------
-	344441  S     2714  VLG1266  34975                                	6    13    1
-	4b8425  S     0367  PGT522   39000  483  135                      	7    25    1
-	4baa6d  S     0342  THY6ZA   34975  489  128   	48.931    8.476    8   275    5
-	3c6678  S     1000  DLH8CN   22975  410  178   	48.975    8.536   23   279    1
-	4692cd  S     3552  AEE8HN   34000  410  309   	48.852    8.532    6   129    4
-	405455  S     2012  BAW920X  10650  347  113   	49.035    8.715   40   205    0
-	```
+	![linuxkonsole.png](https://bitbucket.org/repo/L7eGnx/images/2608180468-linuxkonsole.png)
 	
 ### Schritt 5: Zuletzt das Init-Script für automatischen Start einrichten
 
