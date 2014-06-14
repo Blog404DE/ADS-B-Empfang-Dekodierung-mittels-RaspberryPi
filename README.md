@@ -134,29 +134,20 @@ Eine Schritt-für-Schritt Anleitung (englisch) finden Sie unter http://qdosmsq.d
 	```
 	
 	Es sollte eine Ausgabe wie folgt kommen:
-	
-	```
-	Found 1 device(s):
-	  0:  Generic RTL2832U OEM
-
-	Using device 0: Generic RTL2832U OEM
-	Found Rafael Micro R820T tuner
-	...
-	```
+				
+	>	Found 1 device(s):
+	>	0:  Generic RTL2832U OEM
+	>
+	> Using device 0: Generic RTL2832U OEM
+	> Found Rafael Micro R820T tuner
 	
 	Falls nachfolgende Text erscheint, dann muss das erwähnte Kernel-Modul ebenfalls in die oben angelegte Blacklist aufgenommen und später mittels rmmod oder Reboot entladen werden.
 	
-	```
-Kernel driver is active, or device is claimed by second instance of librtlsdr.
-In the first case, please either detach or blacklist the kernel module
-(dvb_usb_rtl28xxu), or enable automatic detaching at compile time.	
-	```
+	> Kernel driver is active, or device is claimed by second instance of librtlsdr.
+	> In the first case, please either detach or blacklist the kernel module
+	> (dvb_usb_rtl28xxu), or enable automatic detaching at compile time.	
 	
-	Sollte die folgende Meldung kommen, so stellt das **kein Problem** da:
-
-	```
-	No E4000 tuner found, aborting.
-	```
+	Sollte die folgende Meldung _No E4000 tuner found, aborting._ bekommen, so stellt das **kein Problem** 
 
 ### Teil 6: Installation von dump1090
 
