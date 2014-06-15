@@ -21,19 +21,15 @@ Die Anleitung erklärt, wie man auf einem RaspberryPi mittels eines bestimmten U
 #### Teil 1: Auf Ihrem Computer 
 
 ##### Windows/Mac:
-- SDCardFormatter (für [Windows] [1] bzw. [Mac] [2]) und [NOOBS Distribution] [3] herunterladen
+- SDCardFormatter (für [Windows](https://www.sdcard.org/downloads/formatter_4/eula_windows/") bzw. [Mac](https://www.sdcard.org/downloads/formatter_4/eula_mac/)) und [NOOBS Distribution](http://www.raspberrypi.org/downloads/) herunterladen
 - SDCard mit SDCardFormatter formatieren. ``` Wichtig: Die Option „Format Size Adjustment“ aktivieren. ``` 
 - NOOBS Distribution entpacken und auf SDCard kopieren
-
-[1]: "https://www.sdcard.org/downloads/formatter_4/eula_windows/" "Windows"
-[2]: "https://www.sdcard.org/downloads/formatter_4/eula_mac/" "Mac"
-[3]: "http://www.raspberrypi.org/downloads/" "nOOBs Distribution"
 
 ##### oder Linux:
 - Partition auf SDCard anlegen und formatieren mittels *mkfs.vfat*. 
 - NOOBS Distribution entpacken und auf SDCard kopieren
 
-Eine Schritt-für-Schritt Anleitung (englisch) finden Sie unter http://qdosmsq.dunbar-it.co.uk/blog/2013/06/noobs-for-raspberry-pi/
+Eine Schritt-für-Schritt Anleitung (englisch) finden Sie [hier](http://qdosmsq.dunbar-it.co.uk/blog/2013/06/noobs-for-raspberry-pi/)
 
 
 #### Teil 2: Auf Ihrem RaspberryPi:
@@ -62,7 +58,7 @@ Eine Schritt-für-Schritt Anleitung (englisch) finden Sie unter http://qdosmsq.d
 	- Mit „2 Change User Password“ ein Passwort setzen
 	- Bei „4 Internationalisation Options“ / „I2 Change Timezone“ die eigene Zeitzone einstellen (z.B. Europa / Berlin)
 	- (Empfohlen) Den SSH Server über „8 Advanced Options“ / „A4 SSH“ einschalten
-	- (Optional) „7 Overclock“ den RaspberryPi etwas schneller machen. Bitte die Risiken beachten (Details: http://elinux.org/RPiconfig#Overclocking)
+	- (Optional) „7 Overclock“ den RaspberryPi etwas schneller machen. Bitte die Risiken beachten ([Details](http://elinux.org/RPiconfig#Overclocking))
 - Mit „Finish“ das Programm verlassen (Reboot)
 	
 ### Teil 4: Benötigte zusätzliche Pakete installieren
@@ -151,7 +147,7 @@ Eine Schritt-für-Schritt Anleitung (englisch) finden Sie unter http://qdosmsq.d
 
 ### Teil 6: Installation von dump1090
 
--	Dump1090 <https://github.com/MalcolmRobb/dump1090> herunterladen
+-	Dump1090 (<https://github.com/MalcolmRobb/dump1090>) herunterladen
 
 	```
 	cd ~
@@ -207,13 +203,9 @@ Eine Schritt-für-Schritt Anleitung (englisch) finden Sie unter http://qdosmsq.d
 
 ### Abschluss:
 
-Welche Möglichkeiten habe ich nach dieser Installation? Ohne die Installation weiterer Anwendungen können Sie sich im Browser auf einer Google Maps bzw. OpenStreetMap-Karte die empfangenen Flugdaten [anzeigen lassen] [6]. Hierzu rufen Sie im Browser die URL _http://ip_vom_raspberry:8080/_ auf. 
+Welche Möglichkeiten habe ich nach dieser Installation? Ohne die Installation weiterer Anwendungen können Sie sich im Browser auf einer Google Maps bzw. OpenStreetMap-Karte die empfangenen Flugdaten [anzeigen lassen](https://github.com/CsiLabor/ADS-B-Empfang-Dekodierung-mittels-RaspberryPi/blob/master/browserscreenshot.png?raw=true). Hierzu rufen Sie im Browser die URL _http://ip_vom_raspberry:8080/_ auf. 
 
-[6]: "https://github.com/CsiLabor/ADS-B-Empfang-Dekodierung-mittels-RaspberryPi/blob/master/browserscreenshot.png?raw=true" "Screenshot"
-
-Selbstverständlich besteht auch die Möglichkeit die Flugdaten mittels alternative Programme wie [Virtual Radar] [4] (für Windows/Linux) auszuwerten. Hierzu wird z.B. der von dump1090 bereitgestellte _Beast Raw Feed_ über den Port 30002 verwendet. Die Möglichkeiten sind hierbei beinahe unendlich.
-
-[4]: "http://www.virtualradarserver.co.uk" "VirtualRadar"
+Selbstverständlich besteht auch die Möglichkeit die Flugdaten mittels alternative Programme wie [Virtual Radar](http://www.virtualradarserver.co.uk) (für Windows/Linux) auszuwerten. Hierzu wird z.B. der von dump1090 bereitgestellte _Beast Raw Feed_ über den Port 30002 verwendet. Die Möglichkeiten sind hierbei beinahe unendlich.
 
 ---
 
@@ -231,7 +223,7 @@ Selbstverständlich besteht auch die Möglichkeit die Flugdaten mittels alternat
 	./dump1090 --quiet --net --enable-agc --net-ro-size 500 --net-ro-rate 5 &
 	```
 	
-3. Mittels des Parameters _--aggressive_ kann versucht werden die Flugdaten mittels einer alternativen Methode dekodiert werden. Dies *kann* zum empfangen von mehr Flugdaten führen. Dies wird unter anderem mehr einer höheren Fehlerrate "erkauft". Der Einsatz empfiehlt sich laut Entwickler an Orten, bei denen wenig Flugverkehr stattfindet. Es erhöht sich dabei die Chance mehr Daten von den Flugzeugen zu empfangen. Weitere Details finden sich auf der Homepage von Dump1090 unter https://github.com/antirez/dump1090.
+3. Mittels des Parameters _--aggressive_ kann versucht werden die Flugdaten mittels einer alternativen Methode dekodiert werden. Dies *kann* zum empfangen von mehr Flugdaten führen. Dies wird unter anderem mehr einer höheren Fehlerrate "erkauft". Der Einsatz empfiehlt sich laut Entwickler an Orten, bei denen wenig Flugverkehr stattfindet. Es erhöht sich dabei die Chance mehr Daten von den Flugzeugen zu empfangen. Weitere Details finden sich auf der Homepage von Dump1090 unter <https://github.com/MalcolmRobb/dump1090>.
 
 	Nach meiner Erfahrung empfiehlt sich der Einsatz des Parameters auch, wenn man z.B. die beim USB-Stick mitgelieferte Antenne einsetzen möchte. 
 	
@@ -243,6 +235,4 @@ Copyright Jens Dutzi 2014 / Stand: 14.06.2014
 
 ![Lizenz](http://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png).
 
-Dieses Werk ist lizenziert unter einer [Creative Commons Namensnennung - Nicht-kommerziell - Weitergabe unter gleichen Bedingungen 4.0 International Lizenz.] [5]
-
-[5]: "http://creativecommons.org/licenses/by-nc-sa/4.0/" "Lizenzinformationen"
+Dieses Werk ist lizenziert unter einer [Creative Commons Namensnennung - Nicht-kommerziell - Weitergabe unter gleichen Bedingungen 4.0 International Lizenz.](http://creativecommons.org/licenses/by-nc-sa/4.0/)
