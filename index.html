@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Ads-b-empfang-dekodierung-mittels-raspberrypi : Die Anleitung erklärt, wie man auf einem RaspberryPi mittels eines bestimmten USB DVB-T Sticks und den Software-Paketen rtl-sdr und dump1090 die ADS-B Daten von Flugzeugen zu empfangen und ggf. für andere Anwendungen dekodieren/auszuwerten." />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Ads-b-empfang-dekodierung-mittels-raspberrypi</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/CsiLabor/ADS-B-Empfang-Dekodierung-mittels-RaspberryPi">View on GitHub</a>
+
+          <h1 id="project_title">Ads-b-empfang-dekodierung-mittels-raspberrypi</h1>
+          <h2 id="project_tagline">Die Anleitung erklärt, wie man auf einem RaspberryPi mittels eines bestimmten USB DVB-T Sticks und den Software-Paketen rtl-sdr und dump1090 die ADS-B Daten von Flugzeugen zu empfangen und ggf. für andere Anwendungen dekodieren/auszuwerten.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/CsiLabor/ADS-B-Empfang-Dekodierung-mittels-RaspberryPi/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/CsiLabor/ADS-B-Empfang-Dekodierung-mittels-RaspberryPi/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="howto-installation-von-dump1090-auf-einem-raspberrypi" class="anchor" href="#howto-installation-von-dump1090-auf-einem-raspberrypi"><span class="octicon octicon-link"></span></a>Howto: Installation von Dump1090 auf einem RaspberryPi</h1>
+
+<h2>
+<a name="einleitung" class="anchor" href="#einleitung"><span class="octicon octicon-link"></span></a>Einleitung:</h2>
+
+<p>Die Anleitung erklärt, wie man auf einem RaspberryPi mittels eines bestimmten USB DVB-T Sticks und den Software-Paketen rtl-sdr und dump1090 die ADS-B Daten von Flugzeugen zu empfangen und ggf. für andere Anwendungen dekodieren/auszuwerten. </p>
+
+<h2>
+<a name="was-wird-ben%C3%B6tigt" class="anchor" href="#was-wird-ben%C3%B6tigt"><span class="octicon octicon-link"></span></a>Was wird benötigt?</h2>
+
+<ul>
+<li>RaspberryPi (Modell B mit 512MB Speicher) inklusive USB-Netzteil </li>
+<li>SD-Karte (8GB oder mehr) </li>
+<li>USB Tastatur und (optional) USB Maus</li>
+<li>USB DVB-T Empfänger mit RTL2832U/E4000 oder (neuer) RTL2832U/R820T als Chipsatz/Tuner</li>
+<li>Ein Windows/Mac/Linux-Rechner</li>
+</ul><h2>
+<a name="installations-anleitung" class="anchor" href="#installations-anleitung"><span class="octicon octicon-link"></span></a>Installations-Anleitung:</h2>
+
+<h3>
+<a name="basis-installation-des-raspberry-pi" class="anchor" href="#basis-installation-des-raspberry-pi"><span class="octicon octicon-link"></span></a>Basis-Installation des Raspberry Pi:</h3>
+
+<h4>
+<a name="teil-1-auf-ihrem-computer" class="anchor" href="#teil-1-auf-ihrem-computer"><span class="octicon octicon-link"></span></a>Teil 1: Auf Ihrem Computer</h4>
+
+<h5>
+<a name="windowsmac" class="anchor" href="#windowsmac"><span class="octicon octicon-link"></span></a>Windows/Mac:</h5>
+
+<ul>
+<li>SDCardFormatter (für <a href="https://www.sdcard.org/downloads/formatter_4/eula_windows/%22">Windows</a> bzw. <a href="https://www.sdcard.org/downloads/formatter_4/eula_mac/">Mac</a>) und <a href="http://www.raspberrypi.org/downloads/">NOOBS Distribution</a> herunterladen</li>
+<li>SDCard mit SDCardFormatter formatieren. <code>Wichtig: Die Option „Format Size Adjustment“ aktivieren.</code> </li>
+<li>NOOBS Distribution entpacken und auf SDCard kopieren</li>
+</ul><h5>
+<a name="oder-linux" class="anchor" href="#oder-linux"><span class="octicon octicon-link"></span></a>oder Linux:</h5>
+
+<ul>
+<li>Partition auf SDCard anlegen und formatieren mittels <em>mkfs.vfat</em>. </li>
+<li>NOOBS Distribution entpacken und auf SDCard kopieren</li>
+</ul><p>Eine Schritt-für-Schritt Anleitung (englisch) finden Sie <a href="http://qdosmsq.dunbar-it.co.uk/blog/2013/06/noobs-for-raspberry-pi/">hier</a></p>
+
+<h4>
+<a name="teil-2-auf-ihrem-raspberrypi" class="anchor" href="#teil-2-auf-ihrem-raspberrypi"><span class="octicon octicon-link"></span></a>Teil 2: Auf Ihrem RaspberryPi:</h4>
+
+<ul>
+<li>SD-Karte in den RaspberryPi stecken</li>
+<li>RaspberryPi mit der Tastautur, einem Monitor und dem Netzteil in Betrieb nehmen.</li>
+<li>Im Installer auf Sprache „Deutsch“ stellen und „Raspbian“ + „Data Partiton“ auswählen</li>
+<li>Auswahl installieren (~2GB werden heruntergeladen)</li>
+<li>Einen Kaffee oder Tee holen, denn der Vorgang kann abhängig vom Internetzugang lange dauern</li>
+<li>Nach Abschluss RaspberryPi neu starten</li>
+</ul><h3>
+<a name="teil-3-noobs-installieren" class="anchor" href="#teil-3-noobs-installieren"><span class="octicon octicon-link"></span></a>Teil 3: NOOBS installieren</h3>
+
+<h5>
+<a name="betriebsystem-auswahl-pre-installation" class="anchor" href="#betriebsystem-auswahl-pre-installation"><span class="octicon octicon-link"></span></a>Betriebsystem-Auswahl (Pre-Installation):</h5>
+
+<ul>
+<li>Nach dem initialen Bootvorgang wird der <em>easy operating system install manager</em> gestartet.</li>
+<li>Im Install-Manager wählen Sie als Betriebssystem „Raspbian [RECOMMENDED]“ aus</li>
+<li>Zusätzlich wählen Sie bei „Language“ und „Keyboard“ jeweils die Einstellungen für Deutschland aus.</li>
+<li>(Optional) Über „Edit config“ kann noch die config.txt Konfigurationsdatei des RaspberryPi angepasst werden</li>
+<li>Danach gehen Sie auf "Install" um das gewählte Betriebssystem zu installieren</li>
+<li>Am Abschluss der Installation wird der RaspberryPi neu gestartet</li>
+</ul><h5>
+<a name="konfiguration-von-raspbian-post-installation" class="anchor" href="#konfiguration-von-raspbian-post-installation"><span class="octicon octicon-link"></span></a>Konfiguration von Raspbian (Post-Installation):</h5>
+
+<ul>
+<li>Nach dem ersten Bootvorgang des Systems Raspbian wird automatisch Raspi-config gestartet (Hinweis: Der Startvorgang kann beim ersten mal etwas länger dauern)</li>
+<li>In Raspi-config folgendes einstellen:
+
+<ul>
+<li>Mit „2 Change User Password“ ein Passwort setzen</li>
+<li>Bei „4 Internationalisation Options“ / „I2 Change Timezone“ die eigene Zeitzone einstellen (z.B. Europa / Berlin)</li>
+<li>(Empfohlen) Den SSH Server über „8 Advanced Options“ / „A4 SSH“ einschalten</li>
+<li>(Optional) „7 Overclock“ den RaspberryPi etwas schneller machen. Bitte die Risiken beachten (<a href="http://elinux.org/RPiconfig#Overclocking">Details</a>)</li>
+</ul>
+</li>
+<li>Mit „Finish“ das Programm verlassen (Reboot)</li>
+</ul><h3>
+<a name="teil-4-ben%C3%B6tigte-zus%C3%A4tzliche-pakete-installieren" class="anchor" href="#teil-4-ben%C3%B6tigte-zus%C3%A4tzliche-pakete-installieren"><span class="octicon octicon-link"></span></a>Teil 4: Benötigte zusätzliche Pakete installieren</h3>
+
+<ul>
+<li>Auf dem RaspberryPi anmelden mittels Benutzernamen <em>pi</em> und Ihrem gewählten Passwort an</li>
+<li>
+<p>Um die nachfolgenden Programme installieren zu können, werden zusätzliche Pakete auf dem Raspberry-Pi benötigt (Crosscompiler und libusb Entwickler-Dateien). Zusätzlich wird das nicht benötigte Mathematica inklusive deren Konfigurationsdateien entfernt um ein nicht benötigten Dienst zu beenden und Speicherplatz zu sparen.</p>
+
+<pre><code>sudo aptitude install cmake libusb-1.0-0-dev
+sudo aptitude purge wolfram-engine
+</code></pre>
+</li>
+</ul><h3>
+<a name="teil-5-installation-von-rtl-sdr" class="anchor" href="#teil-5-installation-von-rtl-sdr"><span class="octicon octicon-link"></span></a>Teil 5: Installation von rtl-sdr</h3>
+
+<ul>
+<li>
+<p>Git Repository für  rtl-sdr von OsmoSDR (<a href="http://sdr.osmocom.org/trac/wiki/rtl-sdr">http://sdr.osmocom.org/trac/wiki/rtl-sdr</a>) herunterladen</p>
+
+<pre><code>git clone git://git.osmocom.org/rtl-sdr.git
+</code></pre>
+</li>
+<li>
+<p>In Sourcecode-Verzeichnis wechseln und Anwendung kompilieren</p>
+
+<pre><code>cd rtl-sdr/
+mkdir build; cd build
+cmake ../ -DINSTALL_UDEV_RULES=ON
+make
+sudo make install
+</code></pre>
+</li>
+<li><p>Hier ist eventuell Zeit für z.B. dem aufräumen des Schreibtisch ;-)</p></li>
+<li>
+<p>Update den Cache der Shared Libraries</p>
+
+<pre><code>sudo ldconfig
+</code></pre>
+</li>
+<li>
+<p>rtl-sdr udev-Rules kopieren</p>
+
+<pre><code>sudo cp ../rtl-sdr.rules /etc/udev/rules.d/
+</code></pre>
+</li>
+<li>
+<p>Bestehende DVB-T Kernel Module blacklisten (hierzu no-rtl.conf anlegen)</p>
+
+<pre><code>sudo nano /etc/modprobe.d/no-rtl.conf
+</code></pre>
+
+<p>und mit folgendem Inhalt versehen:</p>
+
+<pre><code>blacklist dvb_usb_rtl28xxu
+blacklist rtl2832
+blacklist rtl2830   
+</code></pre>
+</li>
+<li>
+<p>System neu starten</p>
+
+<pre><code>sudo reboot
+</code></pre>
+</li>
+<li>
+<p>Optional: prüfe ob der DVB-T Stick erkannt wird</p>
+
+<pre><code>rtl_test -t
+</code></pre>
+
+<p>Es sollte eine Ausgabe wie folgt kommen:</p>
+
+<blockquote>
+<p>Found 1 device(s):
+  0:  Generic RTL2832U OEM</p>
+
+<p>Using device 0: Generic RTL2832U OEM
+Found Rafael Micro R820T tuner</p>
+</blockquote>
+
+<p>Falls nachfolgende Text erscheint, dann muss das erwähnte Kernel-Modul ebenfalls in die oben angelegte Blacklist aufgenommen und später mittels rmmod oder Reboot entladen werden.</p>
+
+<blockquote>
+<p>Kernel driver is active, or device is claimed by second instance of librtlsdr.
+In the first case, please either detach or blacklist the kernel module
+(dvb_usb_rtl28xxu), or enable automatic detaching at compile time.    </p>
+</blockquote>
+
+<p>Sollte die folgende Meldung <em>No E4000 tuner found, aborting.</em> bekommen, so stellt das <strong>kein Problem</strong> </p>
+</li>
+</ul><h3>
+<a name="teil-6-installation-von-dump1090" class="anchor" href="#teil-6-installation-von-dump1090"><span class="octicon octicon-link"></span></a>Teil 6: Installation von dump1090</h3>
+
+<ul>
+<li>
+<p>Dump1090 (<a href="https://github.com/MalcolmRobb/dump1090">https://github.com/MalcolmRobb/dump1090</a>) herunterladen</p>
+
+<pre><code>cd ~
+git clone git://github.com/MalcolmRobb/dump1090.git
+</code></pre>
+</li>
+<li>
+<p>Dump1090 kompilieren:</p>
+
+<pre><code>cd dump1090
+make    
+</code></pre>
+</li>
+<li>
+<p>Voilá - Installation ist schon fast fertig und wir können prüfen ob Daten empfangen werden</p>
+
+<pre><code>./dump1090 --interactive --net --metric --enable-agc
+</code></pre>
+
+<p>Es sollte dabei eine Ausgabe wie die folgende nach einigen Sekunden zu sehen sein:</p>
+
+<p><img src="https://github.com/CsiLabor/ADS-B-Empfang-Dekodierung-mittels-RaspberryPi/blob/master/linuxkonsole.png?raw=true" alt="linuxkonsole.png"></p>
+</li>
+</ul><h3>
+<a name="schritt-5-zuletzt-das-init-script-f%C3%BCr-automatischen-start-einrichten" class="anchor" href="#schritt-5-zuletzt-das-init-script-f%C3%BCr-automatischen-start-einrichten"><span class="octicon octicon-link"></span></a>Schritt 5: Zuletzt das Init-Script für automatischen Start einrichten</h3>
+
+<ul>
+<li>
+<p>Das mitgelieferte das Init-Script in den init.d Ordner kopieren</p>
+
+<pre><code>cp dump1090.sh /etc/init.d
+</code></pre>
+</li>
+<li>
+<p>Das Init-Script öffnen um die Startparameter anzupassen:</p>
+
+<pre><code>sudo nano /etc/init.d/dump1090.sh
+</code></pre>
+</li>
+<li>
+<p>Die Zeile mit <em>PROG_ARGS="..."</em> suchen und durch folgende Zeile ersetzen:</p>
+
+<pre><code>PROG_ARGS="--quiet --net --net-ro-size 500 --net-ro-rate 5 --aggressive --enable-agc"
+</code></pre>
+
+<p>Die gewählten Parameter wurden erweitert um Auto-Gain und dem optionalen Aggressive-Mode (siehe Hinweise).</p>
+</li>
+<li><p>Kontrollieren Sie auch, ob der unter <em>PROG_PATH</em> gewählte Pfad korrekt ist (sollte <em>/home/pi/dump1090</em> sein).</p></li>
+<li>
+<p>Das Start-Script nun noch ausführbar machen und die Runlevel-Links erzeugen</p>
+
+<pre><code>sudo chmod +x /etc/init.d/dump1090.sh
+sudo update-rc.d dump1090.sh defaults
+</code></pre>
+</li>
+</ul><h3>
+<a name="abschluss" class="anchor" href="#abschluss"><span class="octicon octicon-link"></span></a>Abschluss:</h3>
+
+<p>Welche Möglichkeiten habe ich nach dieser Installation? Ohne die Installation weiterer Anwendungen können Sie sich im Browser auf einer Google Maps bzw. OpenStreetMap-Karte die empfangenen Flugdaten <a href="https://github.com/CsiLabor/ADS-B-Empfang-Dekodierung-mittels-RaspberryPi/blob/master/browserscreenshot.png?raw=true">anzeigen lassen</a>. Hierzu rufen Sie im Browser die URL <em>http://ip_vom_raspberry:8080/</em> auf. </p>
+
+<p>Selbstverständlich besteht auch die Möglichkeit die Flugdaten mittels alternative Programme wie <a href="http://www.virtualradarserver.co.uk">Virtual Radar</a> (für Windows/Linux) auszuwerten. Hierzu wird z.B. der von dump1090 bereitgestellte <em>Beast Raw Feed</em> über den Port 30002 verwendet. Die Möglichkeiten sind hierbei beinahe unendlich.</p>
+
+<hr><h3>
+<a name="noch-ein-paar-hinweise" class="anchor" href="#noch-ein-paar-hinweise"><span class="octicon octicon-link"></span></a>Noch ein paar Hinweise</h3>
+
+<ol>
+<li>
+<p>Sollten Sie die dump1090 im Hintergrund starten möchten, so können Sie die Software wie folgt aufrufen:</p>
+
+<pre><code>./dump1090 --quiet --net --enable-agc &amp;
+</code></pre>
+</li>
+<li>
+<p>Falls der RaspberryPi überlastet sein sollte (z.B. beim Empfang vieler Flugzeuge z.B. mittels einer etwas besseren Antenne), dann kann die Systemlast durch folgenden Programmaufruf reduziert werden. Sollten Sie Ihren RaspberryPi nicht übertaktet haben, kann dies ebenfalls Sinn ergeben:</p>
+
+<pre><code>./dump1090 --quiet --net --enable-agc --net-ro-size 500 --net-ro-rate 5 &amp;
+</code></pre>
+</li>
+<li>
+<p>Mittels des Parameters <em>--aggressive</em> kann versucht werden die Flugdaten mittels einer alternativen Methode dekodiert werden. Dies <em>kann</em> zum empfangen von mehr Flugdaten führen. Dies wird unter anderem mehr einer höheren Fehlerrate "erkauft". Der Einsatz empfiehlt sich laut Entwickler an Orten, bei denen wenig Flugverkehr stattfindet. Es erhöht sich dabei die Chance mehr Daten von den Flugzeugen zu empfangen. Weitere Details finden sich auf der Homepage von Dump1090 unter <a href="https://github.com/MalcolmRobb/dump1090">https://github.com/MalcolmRobb/dump1090</a>.</p>
+
+<p>Nach meiner Erfahrung empfiehlt sich der Einsatz des Parameters auch, wenn man z.B. die beim USB-Stick mitgelieferte Antenne einsetzen möchte. </p>
+</li>
+</ol><h2></h2>
+
+<h6>
+<a name="lizenz-information" class="anchor" href="#lizenz-information"><span class="octicon octicon-link"></span></a>Lizenz-Information:</h6>
+
+<p>Copyright Jens Dutzi 2014 / Stand: 14.06.2014</p>
+
+<p><img src="http://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" alt="Lizenz">.</p>
+
+<p>Dieses Werk ist lizenziert unter einer <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Namensnennung - Nicht-kommerziell - Weitergabe unter gleichen Bedingungen 4.0 International Lizenz.</a></p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Ads-b-empfang-dekodierung-mittels-raspberrypi maintained by <a href="https://github.com/CsiLabor">CsiLabor</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
