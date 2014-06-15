@@ -174,7 +174,7 @@ Eine Schritt-für-Schritt Anleitung (englisch) finden Sie unter http://qdosmsq.d
 
 	Es sollte dabei eine Ausgabe wie die folgende nach einigen Sekunden zu sehen sein:
 	
-	![linuxkonsole.png](https://bitbucket.org/repo/L7eGnx/images/2608180468-linuxkonsole.png)
+	![linuxkonsole.png](https://github.com/CsiLabor/ADS-B-Empfang-Dekodierung-mittels-RaspberryPi/blob/master/linuxkonsole.png?raw=true)
 	
 ### Schritt 5: Zuletzt das Init-Script für automatischen Start einrichten
 
@@ -209,7 +209,7 @@ Eine Schritt-für-Schritt Anleitung (englisch) finden Sie unter http://qdosmsq.d
 
 Welche Möglichkeiten habe ich nach dieser Installation? Ohne die Installation weiterer Anwendungen können Sie sich im Browser auf einer Google Maps bzw. OpenStreetMap-Karte die empfangenen Flugdaten [anzeigen lassen] [6]. Hierzu rufen Sie im Browser die URL _http://ip_vom_raspberry:8080/_ auf. 
 
-[6]: "https://bytebucket.org/jens_dutzi/ads-b-empfang-dekodierung-mittels-raspberrypi/raw/57beef87dc4a176d656641d21591fd53da242a6b/browserscreenshot.png" "Screenshot"
+[6]: "https://github.com/CsiLabor/ADS-B-Empfang-Dekodierung-mittels-RaspberryPi/blob/master/browserscreenshot.png?raw=true" "Screenshot"
 
 Selbstverständlich besteht auch die Möglichkeit die Flugdaten mittels alternative Programme wie [Virtual Radar] [4] (für Windows/Linux) auszuwerten. Hierzu wird z.B. der von dump1090 bereitgestellte _Beast Raw Feed_ über den Port 30002 verwendet. Die Möglichkeiten sind hierbei beinahe unendlich.
 
